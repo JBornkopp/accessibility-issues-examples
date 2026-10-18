@@ -9,7 +9,7 @@
 
 header {
   background: var(--aih-gradient-hero);
-  color: var(--aih-color-on-primary);
+  color: var(--aih-color-on-hero);
   padding: var(--aih-space-6);
   border-radius: var(--aih-radius-lg);
   margin-bottom: var(--aih-space-6);
@@ -19,6 +19,15 @@ header {
 h1 {
   margin: 0;
   font-size: 1.75rem;
+}
+
+.header-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--aih-space-2);
+  margin-bottom: var(--aih-space-4);
+  text-align: start;
 }
 
 .intro {
@@ -64,11 +73,11 @@ app-card {
 }
 
 .column-header.wrong {
-  color: #b91c1c; /* Red for Falsch — ≥4.5:1 on border surface */
+  color: var(--aih-color-status-wrong); /* ≥4.5:1 on border surface in both themes */
 }
 
 .column-header.right {
-  color: #15803d; /* Green for Richtig — ≥4.5:1 on border surface */
+  color: var(--aih-color-status-right); /* ≥4.5:1 on border surface in both themes */
 }
 
 /* Example-specific demo styles (projected into the tab components) */

@@ -5,8 +5,8 @@
 
 .app-code__pre {
   margin: 0;
-  background-color: #282c34;
-  color: #abb2bf;
+  background-color: var(--aih-color-code-bg);
+  color: var(--aih-color-code-text);
   padding: var(--aih-space-3);
   border-radius: var(--aih-radius-sm);
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
@@ -16,9 +16,10 @@
   white-space: pre;
 
   // Visible focus ring for keyboard users scrolling the code region (WCAG 2.4.7).
+  // The ring is drawn inside the dark block, so it uses the inverse colour (≥3:1).
   &:focus-visible {
-    outline: var(--aih-focus-width) solid var(--aih-color-focus-ring);
-    outline-offset: var(--aih-focus-offset);
+    outline: var(--aih-focus-width) solid var(--aih-color-focus-ring-inverse);
+    outline-offset: calc(var(--aih-focus-offset) * -1 - var(--aih-focus-width));
   }
 }
 
@@ -50,9 +51,10 @@
     background-color: var(--aih-color-primary-hover);
   }
 
+  // Sits on the dark code block → inverse ring (≥3:1 against code bg).
   &:focus-visible {
     opacity: 1;
-    outline: var(--aih-focus-width) solid var(--aih-color-focus-ring);
+    outline: var(--aih-focus-width) solid var(--aih-color-focus-ring-inverse);
     outline-offset: var(--aih-focus-offset);
   }
 }

@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { Card, Code, Tab, Tabs } from './components';
+import {Card, Code, LanguageSwitch, Tab, Tabs, ThemeSwitch} from './components';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [Card, Tabs, Tab, Code],
+  imports: [Card, Tabs, Tab, Code, LanguageSwitch, ThemeSwitch],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

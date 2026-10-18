@@ -52,7 +52,7 @@ export class Code {
   );
 
   /** Accessible label for the code region. */
-  public readonly ariaLabel = input<string>('Code-Beispiel', {
+  public readonly ariaLabel = input<string>($localize`:@@code.defaultLabel:Code-Beispiel`, {
     alias: 'label',
   });
 

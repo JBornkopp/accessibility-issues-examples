@@ -1,10 +1,14 @@
 <header>
-  <h1>Accessibility Coding-Beispiele</h1>
+  <div class="header-controls">
+    <app-theme-switch />
+    <app-language-switch />
+  </div>
+  <h1 i18n="@@app.title">Accessibility Coding-Beispiele</h1>
 </header>
 
 <main>
   <div class="intro">
-    <p>
+    <p i18n="@@app.intro">
       Barrieren verstecken sich in den kleinsten Ecken und können schnell übersehen werden. Wenn man
       es aber erstmal weiß, kann man grobe Fehler auch schnell vermeiden. Folgende Beispiele zeigen
       verschiedene Probleme im Code und wie sie behoben werden können.
@@ -13,49 +17,59 @@
 
   <app-card
     badge="Buttons"
+    i18n-badge="@@buttons.badge"
     title="Buttons und States"
+    i18n-title="@@buttons.title"
     description="Buttons sind zentrale UI Elemente, die für die unterschiedlichsten Aktionen genutzt werden. Manchmal müssen Buttons aber deaktiviert werden. Was gerne übersehen wird:"
+    i18n-description="@@buttons.description"
   >
     <div class="comparison-container">
       <!-- Falsch Column -->
       <div class="comparison-column">
-        <h3 class="column-header wrong">Falsch</h3>
+        <h3 class="column-header wrong" i18n="@@common.wrong">Falsch</h3>
 
         <app-tabs>
-          <ng-template appTab label="Komponente">
-            <button disabled>Deaktivierter Button</button>
+          <ng-template appTab label="Komponente" i18n-label="@@common.tab.component">
+            <button disabled i18n="@@buttons.disabledButton">Deaktivierter Button</button>
           </ng-template>
-          <ng-template appTab label="Was nicht geht">
+          <ng-template appTab label="Was nicht geht" i18n-label="@@common.tab.notWorking">
             <ul>
-              <li>Button fokussieren</li>
-              <li>Von Screen-Reader vorlesen lassen</li>
+              <li i18n="@@buttons.wrong.focus">Button fokussieren</li>
+              <li i18n="@@common.wrong.screenReader">Von Screen-Reader vorlesen lassen</li>
             </ul>
           </ng-template>
-          <ng-template appTab label="Code">
-            <app-code [code]="badDisabledButton" language="html" label="Falsches Button-Beispiel" />
+          <ng-template appTab label="Code" i18n-label="@@common.tab.code">
+            <app-code
+              [code]="badDisabledButton"
+              language="html"
+              label="Falsches Button-Beispiel"
+              i18n-label="@@buttons.wrong.codeLabel"
+            />
           </ng-template>
         </app-tabs>
       </div>
 
       <!-- Richtig Column -->
       <div class="comparison-column">
-        <h3 class="column-header right">Richtig</h3>
+        <h3 class="column-header right" i18n="@@common.right">Richtig</h3>
 
         <app-tabs>
-          <ng-template appTab label="Komponente">
-            <button aria-disabled="true" class="a11y-btn-disabled">Deaktivierter Button</button>
+          <ng-template appTab label="Komponente" i18n-label="@@common.tab.component">
+            <!-- prettier-ignore -->
+            <button aria-disabled="true" class="a11y-btn-disabled" i18n="@@buttons.disabledButton">Deaktivierter Button</button>
           </ng-template>
-          <ng-template appTab label="Was ist anders?">
+          <ng-template appTab label="Was ist anders?" i18n-label="@@common.tab.whatsDifferent">
             <ul>
-              <li>Styles müssen selbst gebaut werden</li>
-              <li>Button bleibt fokussierbar</li>
+              <li i18n="@@buttons.right.styles">Styles müssen selbst gebaut werden</li>
+              <li i18n="@@buttons.right.focusable">Button bleibt fokussierbar</li>
             </ul>
           </ng-template>
-          <ng-template appTab label="Code">
+          <ng-template appTab label="Code" i18n-label="@@common.tab.code">
             <app-code
               [code]="goodDisabledButton"
               language="html"
               label="Richtiges Button-Beispiel"
+              i18n-label="@@buttons.right.codeLabel"
             />
           </ng-template>
         </app-tabs>
@@ -65,16 +79,19 @@
 
   <app-card
     badge="Div"
+    i18n-badge="@@divs.badge"
     title="Divs und noch mehr Divs"
+    i18n-title="@@divs.title"
     description="Mit divs lassen sich sehr schnell aufwendige und gutaussehende Elemente bauen. Damit übertragen wir aber das Disabled-Problem vom Button direkt auf weitere Bedienelemente - und dieses Mal sind sie nicht mal deaktiviert."
+    i18n-description="@@divs.description"
   >
     <div class="comparison-container">
       <!-- Falsch Column -->
       <div class="comparison-column">
-        <h3 class="column-header wrong">Falsch</h3>
+        <h3 class="column-header wrong" i18n="@@common.wrong">Falsch</h3>
 
         <app-tabs>
-          <ng-template appTab label="Komponente">
+          <ng-template appTab label="Komponente" i18n-label="@@common.tab.component">
             <div class="bad-context-menu-example">
               <div class="bad-menu-item">Menu Item 1</div>
               <div class="bad-menu-item">Menu Item 2</div>
@@ -82,25 +99,32 @@
               <div class="bad-menu-item">Menu Item 4</div>
             </div>
           </ng-template>
-          <ng-template appTab label="Was nicht geht">
+          <ng-template appTab label="Was nicht geht" i18n-label="@@common.tab.notWorking">
             <ul>
-              <li>Keine Tastaturnavigation</li>
-              <li>Von Screen-Reader vorlesen lassen</li>
-              <li>Bedienung relevanter Funktionen in der Anwendung</li>
+              <li i18n="@@divs.wrong.keyboard">Keine Tastaturnavigation</li>
+              <li i18n="@@common.wrong.screenReader">Von Screen-Reader vorlesen lassen</li>
+              <li i18n="@@divs.wrong.functions">
+                Bedienung relevanter Funktionen in der Anwendung
+              </li>
             </ul>
           </ng-template>
-          <ng-template appTab label="Code">
-            <app-code [code]="badContextMenu" language="html" label="Falsches Menü-Beispiel" />
+          <ng-template appTab label="Code" i18n-label="@@common.tab.code">
+            <app-code
+              [code]="badContextMenu"
+              language="html"
+              label="Falsches Menü-Beispiel"
+              i18n-label="@@divs.wrong.codeLabel"
+            />
           </ng-template>
         </app-tabs>
       </div>
 
       <!-- Richtig Column -->
       <div class="comparison-column">
-        <h3 class="column-header right">Richtig</h3>
+        <h3 class="column-header right" i18n="@@common.right">Richtig</h3>
 
         <app-tabs>
-          <ng-template appTab label="Komponente">
+          <ng-template appTab label="Komponente" i18n-label="@@common.tab.component">
             <ul class="good-context-menu-example">
               <li class="good-menu-item-container">
                 <button class="good-menu-item">Menu Item 1</button>
@@ -116,15 +140,22 @@
               </li>
             </ul>
           </ng-template>
-          <ng-template appTab label="Was ist anders?">
+          <ng-template appTab label="Was ist anders?" i18n-label="@@common.tab.whatsDifferent">
             <ul>
-              <li>List Items durch fokussierbares Element ausgetauscht</li>
-              <li>Gängige Navigation out of the box</li>
-              <li>Keine spürbaren Unterschiede für User</li>
+              <li i18n="@@divs.right.focusable">
+                List Items durch fokussierbares Element ausgetauscht
+              </li>
+              <li i18n="@@divs.right.navigation">Gängige Navigation out of the box</li>
+              <li i18n="@@divs.right.noDifference">Keine spürbaren Unterschiede für User</li>
             </ul>
           </ng-template>
-          <ng-template appTab label="Code">
-            <app-code [code]="goodContextMenu" language="html" label="Richtiges Menü-Beispiel" />
+          <ng-template appTab label="Code" i18n-label="@@common.tab.code">
+            <app-code
+              [code]="goodContextMenu"
+              language="html"
+              label="Richtiges Menü-Beispiel"
+              i18n-label="@@divs.right.codeLabel"
+            />
           </ng-template>
         </app-tabs>
       </div>
@@ -133,22 +164,29 @@
 
   <app-card
     badge="Kontraste"
+    i18n-badge="@@contrast.badge"
     title="Farben und Kontraste"
-    description="Farben werden nicht nur genutzt, um der App einen eigenen Stil zu verpassen, sondern auch, um wichtige Informationen und Aktionen zu kennzeichnen. Es ist sehr einfach Farben zu wählen, die für einen schlechte Lesbarkeit sorgen."
+    i18n-title="@@contrast.title"
+    description="Farben werden nicht nur genutzt, um der App einen eigenen Stil zu verpassen, sondern auch, um wichtige Informationen und Aktionen zu kennzeichnen. Es ist sehr einfach Farben zu wählen, die für eine schlechte Lesbarkeit sorgen."
+    i18n-description="@@contrast.description"
   >
     <div class="comparison-container">
       <!-- Falsch Column -->
       <div class="comparison-column">
-        <h3 class="column-header wrong">Falsch</h3>
+        <h3 class="column-header wrong" i18n="@@common.wrong">Falsch</h3>
 
         <app-tabs>
-          <ng-template appTab label="Komponente">
-            <span class="bad-label">Text mit schlechtem Kontrast</span>
+          <ng-template appTab label="Komponente" i18n-label="@@common.tab.component">
+            <span class="bad-label" i18n="@@contrast.wrong.sample"
+              >Text mit schlechtem Kontrast</span
+            >
           </ng-template>
-          <ng-template appTab label="Was nicht geht">
+          <ng-template appTab label="Was nicht geht" i18n-label="@@common.tab.notWorking">
             <ul>
-              <li>Text vernünftig lesen</li>
-              <li>Leute mit Farbsehschwächen können die Texte evtl nicht lesen</li>
+              <li i18n="@@contrast.wrong.read">Text vernünftig lesen</li>
+              <li i18n="@@contrast.wrong.colorBlind">
+                Leute mit Farbsehschwächen können die Texte evtl nicht lesen
+              </li>
             </ul>
           </ng-template>
         </app-tabs>
@@ -156,16 +194,16 @@
 
       <!-- Richtig Column -->
       <div class="comparison-column">
-        <h3 class="column-header right">Richtig</h3>
+        <h3 class="column-header right" i18n="@@common.right">Richtig</h3>
 
         <app-tabs>
-          <ng-template appTab label="Komponente">
-            <span class="good-label">Text mit gutem Kontrast</span>
+          <ng-template appTab label="Komponente" i18n-label="@@common.tab.component">
+            <span class="good-label" i18n="@@contrast.right.sample">Text mit gutem Kontrast</span>
           </ng-template>
-          <ng-template appTab label="Was ist anders?">
+          <ng-template appTab label="Was ist anders?" i18n-label="@@common.tab.whatsDifferent">
             <ul>
-              <li>Kontrastverhältnis von 4.5:1</li>
-              <li>Text kann vernünftig gelesen werde</li>
+              <li i18n="@@contrast.right.ratio">Kontrastverhältnis von 4.5:1</li>
+              <li i18n="@@contrast.right.readable">Text kann vernünftig gelesen werden</li>
             </ul>
           </ng-template>
         </app-tabs>

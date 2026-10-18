@@ -1,0 +1,36 @@
+<nav class="dropdown" [attr.aria-label]="navLabel()" (focusout)="onFocusOut($event)">
+  <button
+    #toggle
+    type="button"
+    class="dropdown__toggle"
+    [attr.aria-controls]="listId"
+    [attr.aria-expanded]="open()"
+    (click)="toggleOpen()"
+    (keydown)="onToggleKeydown($event)"
+  >
+    <span class="dropdown__prefix">{{ prefix() }}</span
+    >{{ ' ' }}
+    <span [attr.lang]="current()?.lang ?? null">{{ current()?.label }}</span>
+    <span class="dropdown__chevron" aria-hidden="true"></span>
+  </button>
+
+  <ul [id]="listId" class="dropdown__list" [hidden]="!open()" (keydown)="onListKeydown($event)">
+    @for (option of options(); track option.value) {
+      <li>
+        <button
+          #option
+          type="button"
+          class="dropdown__option"
+          [attr.lang]="option.lang ?? null"
+          [attr.aria-current]="option.value === value() ? 'true' : null"
+          (click)="select(option.value)"
+        >
+          <span class="dropdown__check" aria-hidden="true">
+            {{ option.value === value() ? '✓' : '' }}
+          </span>
+          {{ option.label }}
+        </button>
+      </li>
+    }
+  </ul>
+</nav>

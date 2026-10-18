@@ -1,13 +1,16 @@
 @if (copyable()) {
-  <button
-    type="button"
-    class="app-code__copy"
-    [attr.aria-label]="justCopied() ? 'Code kopiert' : 'Code in die Zwischenablage kopieren'"
-    (click)="copy()"
-  >
-    {{ justCopied() ? 'Kopiert!' : 'Kopieren' }}
+  <button type="button" class="app-code__copy" (click)="copy()">
+    @if (justCopied()) {
+      <ng-container i18n="@@code.copied">Kopiert!</ng-container>
+    } @else {
+      <ng-container i18n="@@code.copy">Code kopieren</ng-container>
+    }
   </button>
-  <span class="app-code__status" role="status">{{ justCopied() ? 'Code kopiert' : '' }}</span>
+  <span class="app-code__status" role="status">
+    @if (justCopied()) {
+      <ng-container i18n="@@code.copiedStatus">Code in die Zwischenablage kopiert</ng-container>
+    }
+  </span>
 }
 
 <pre

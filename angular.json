@@ -26,6 +26,9 @@
             ],
             "styles": [
               "src/styles.scss"
+            ],
+            "polyfills": [
+              "@angular/localize/init"
             ]
           },
           "configurations": {
@@ -66,6 +69,21 @@
         },
         "test": {
           "builder": "@angular/build:unit-test"
+        },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n",
+          "options": {
+            "buildTarget": "accessibility-issues-examples:build",
+            "format": "json",
+            "outputPath": "src/locale",
+            "outFile": "messages.de.json"
+          }
+        }
+      },
+      "i18n": {
+        "sourceLocale": "de",
+        "locales": {
+          "en": "src/locale/messages.en.json"
         }
       }
     }
