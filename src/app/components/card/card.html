@@ -1,0 +1,32 @@
+@if (badge(); as badgeText) {
+  <span class="app-card__badge">{{ badgeText }}</span>
+}
+
+@switch (headingTag()) {
+  @case ('h1') {
+    <h1 class="app-card__title">{{ title() }}</h1>
+  }
+  @case ('h2') {
+    <h2 class="app-card__title">{{ title() }}</h2>
+  }
+  @case ('h3') {
+    <h3 class="app-card__title">{{ title() }}</h3>
+  }
+  @case ('h4') {
+    <h4 class="app-card__title">{{ title() }}</h4>
+  }
+  @case ('h5') {
+    <h5 class="app-card__title">{{ title() }}</h5>
+  }
+  @case ('h6') {
+    <h6 class="app-card__title">{{ title() }}</h6>
+  }
+}
+
+@if (description(); as descriptionText) {
+  <p class="app-card__description">{{ descriptionText }}</p>
+}
+
+<div class="app-card__content">
+  <ng-content />
+</div>

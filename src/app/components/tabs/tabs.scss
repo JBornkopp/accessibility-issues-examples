@@ -1,0 +1,104 @@
+:host {
+  display: block;
+  background-color: var(--aih-color-surface);
+}
+
+.app-tabs__root {
+  display: flex;
+  flex-direction: column;
+
+  &--vertical {
+    flex-direction: row;
+  }
+}
+
+.app-tabs__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--aih-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--aih-color-border);
+
+  .app-tabs__root--vertical & {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    border-bottom: none;
+    border-right: 1px solid var(--aih-color-border);
+  }
+}
+
+.app-tabs__tab {
+  padding: var(--aih-space-2);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--aih-color-text-muted);
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 2px solid transparent;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
+
+  .app-tabs__root--vertical & {
+    border-bottom: none;
+    border-right: 2px solid transparent;
+  }
+
+  &:hover:not([aria-disabled='true']) {
+    color: var(--aih-color-text);
+  }
+
+  // Selected tab — aria primitive sets aria-selected.
+  &[aria-selected='true'] {
+    color: var(--aih-color-primary);
+    font-weight: bold;
+    border-color: var(--aih-color-primary);
+  }
+
+  // Disabled tab.
+  &[aria-disabled='true'] {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  // Keyboard focus indicator (WCAG 2.4.7 / 2.4.11).
+  &:focus-visible {
+    outline: var(--aih-focus-width) solid var(--aih-color-focus-ring);
+    outline-offset: calc(var(--aih-focus-offset) * -1);
+    border-radius: var(--aih-radius-sm);
+  }
+}
+
+.app-tabs__panel {
+  flex: 1;
+  min-width: 0;
+  padding: var(--aih-space-3);
+  min-height: 150px;
+
+  // The aria primitive applies `inert` + `hidden`-like semantics to inactive
+  // panels. Ensure they are also removed visually.
+  &[inert] {
+    display: none;
+  }
+
+  &:focus-visible {
+    outline: var(--aih-focus-width) solid var(--aih-color-focus-ring);
+    outline-offset: calc(var(--aih-focus-offset) * -1);
+  }
+}
+
+// Mobile: smaller tab targets wrap gracefully; already handled by flex-wrap.
+@media (max-width: 30rem) {
+  .app-tabs__tab {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-tabs__tab {
+    transition: none;
+  }
+}

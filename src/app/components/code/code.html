@@ -1,0 +1,18 @@
+@if (copyable()) {
+  <button
+    type="button"
+    class="app-code__copy"
+    [attr.aria-label]="justCopied() ? 'Code kopiert' : 'Code in die Zwischenablage kopieren'"
+    (click)="copy()"
+  >
+    {{ justCopied() ? 'Kopiert!' : 'Kopieren' }}
+  </button>
+}
+
+<pre
+  class="app-code__pre"
+  [attr.aria-label]="ariaLabel()"
+  [attr.data-language]="language()"
+  tabindex="0"
+  role="region"
+><code class="app-code__code">{{ formattedCode() }}</code></pre>

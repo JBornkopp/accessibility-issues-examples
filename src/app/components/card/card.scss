@@ -1,0 +1,46 @@
+:host {
+  display: block;
+  background-color: var(--aih-color-surface);
+  border: 1px solid var(--aih-color-border);
+  border-radius: var(--aih-radius-md);
+  padding: var(--aih-space-4);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.app-card__badge {
+  display: inline-block;
+  padding: var(--aih-space-1) var(--aih-space-2);
+  border-radius: var(--aih-radius-pill);
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-bottom: var(--aih-space-2);
+  background-color: var(--aih-color-badge-ai-bg);
+  color: var(--aih-color-badge-ai-text);
+}
+
+.app-card__title {
+  margin-top: 0;
+  margin-bottom: var(--aih-space-2);
+  color: var(--aih-color-primary);
+}
+
+.app-card__description {
+  margin-top: 0;
+  color: var(--aih-color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.app-card__content {
+  margin-top: var(--aih-space-4);
+}
+
+// Desktop: a little more breathing room.
+@media (min-width: 48rem) {
+  :host {
+    padding: var(--aih-space-5);
+  }
+}

@@ -1,0 +1,22 @@
+<div ngTabs class="app-tabs__root" [class.app-tabs__root--vertical]="orientation() === 'vertical'">
+  <ul
+    ngTabList
+    class="app-tabs__list"
+    [orientation]="orientation()"
+    [(selectedTab)]="selectedValue"
+  >
+    @for (tab of tabs(); track tab.value) {
+      <li ngTab class="app-tabs__tab" [value]="tab.value" [disabled]="tab.disabled">
+        {{ tab.label }}
+      </li>
+    }
+  </ul>
+
+  @for (tab of tabs(); track tab.value) {
+    <div ngTabPanel class="app-tabs__panel" [value]="tab.value">
+      <ng-template ngTabContent>
+        <ng-container [ngTemplateOutlet]="tab.tab.template" />
+      </ng-template>
+    </div>
+  }
+</div>

@@ -1,0 +1,145 @@
+:host {
+  display: block;
+  font-family: sans-serif;
+  background-color: var(--aih-color-bg);
+  color: var(--aih-color-text);
+  min-height: 100vh;
+  padding: var(--aih-space-4);
+}
+
+header {
+  background: var(--aih-gradient-hero);
+  color: var(--aih-color-on-primary);
+  padding: var(--aih-space-6);
+  border-radius: var(--aih-radius-lg);
+  margin-bottom: var(--aih-space-6);
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.intro {
+  margin-bottom: var(--aih-space-6);
+  line-height: 1.5;
+}
+
+app-card {
+  display: block;
+  margin-bottom: var(--aih-space-6);
+}
+
+/* Comparison View Styles */
+
+.comparison-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--aih-space-4);
+}
+
+.comparison-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--aih-color-surface-2);
+  border-radius: var(--aih-radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--aih-color-border);
+}
+
+.column-header {
+  padding: var(--aih-space-2);
+  text-align: center;
+  font-weight: bold;
+  background-color: var(--aih-color-border);
+  color: var(--aih-color-text);
+}
+
+.column-header.wrong {
+  color: #b91c1c; /* Red for Falsch — ≥4.5:1 on border surface */
+}
+
+.column-header.right {
+  color: #15803d; /* Green for Richtig — ≥4.5:1 on border surface */
+}
+
+/* Example-specific demo styles (projected into the tab components) */
+
+.a11y-btn-disabled {
+  opacity: 0.6;
+}
+
+.bad-context-menu-example {
+  padding: var(--aih-space-2);
+  font-weight: bold;
+  color: var(--aih-color-text);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .bad-menu-item {
+    height: 32px;
+    align-content: center;
+    padding: 0 8px;
+    color: var(--aih-color-text-muted);
+
+    &:hover {
+      background: var(--aih-color-surface-2);
+      color: var(--aih-color-primary);
+    }
+  }
+}
+
+.good-context-menu-example {
+  padding: var(--aih-space-2);
+  list-style: none;
+  font-weight: bold;
+  margin: 0;
+  color: var(--aih-color-text);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .good-menu-item-container {
+    height: 32px;
+
+    .good-menu-item {
+      height: 32px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      align-content: center;
+      padding: 0 8px;
+      background-color: var(--aih-color-surface);
+      color: var(--aih-color-text-muted);
+
+      &:hover {
+        background: var(--aih-color-surface-2);
+        color: var(--aih-color-primary);
+      }
+    }
+  }
+}
+
+.bad-label {
+  color: #05001c;
+  background-color: #6c6a6a;
+}
+
+.good-label {
+  color: var(--aih-color-primary);
+  background-color: var(--aih-color-surface);
+}
+
+/* Desktop: show Falsch / Richtig side by side */
+@media (min-width: 48rem) {
+  :host {
+    padding: var(--aih-space-6);
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .comparison-container {
+    flex-direction: row;
+  }
+}

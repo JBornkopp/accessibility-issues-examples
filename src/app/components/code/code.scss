@@ -1,0 +1,77 @@
+:host {
+  position: relative;
+  display: block;
+}
+
+.app-code__pre {
+  margin: 0;
+  background-color: #282c34;
+  color: #abb2bf;
+  padding: var(--aih-space-3);
+  border-radius: var(--aih-radius-sm);
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  white-space: pre;
+
+  // Visible focus ring for keyboard users scrolling the code region (WCAG 2.4.7).
+  &:focus-visible {
+    outline: var(--aih-focus-width) solid var(--aih-color-focus-ring);
+    outline-offset: var(--aih-focus-offset);
+  }
+}
+
+.app-code__code {
+  font: inherit;
+  color: inherit;
+}
+
+.app-code__copy {
+  position: absolute;
+  top: var(--aih-space-2);
+  right: var(--aih-space-2);
+  z-index: 1;
+  padding: var(--aih-space-1) var(--aih-space-2);
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: var(--aih-color-on-primary);
+  background-color: var(--aih-color-primary);
+  border: 1px solid transparent;
+  border-radius: var(--aih-radius-sm);
+  cursor: pointer;
+  // Hidden until the code region (or the button itself) is hovered/focused,
+  // but always reachable by keyboard.
+  opacity: 0;
+  transition: opacity 0.15s ease;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--aih-color-primary-hover);
+  }
+
+  &:focus-visible {
+    opacity: 1;
+    outline: var(--aih-focus-width) solid var(--aih-color-focus-ring);
+    outline-offset: var(--aih-focus-offset);
+  }
+}
+
+:host:hover .app-code__copy,
+:host:focus-within .app-code__copy {
+  opacity: 1;
+}
+
+// On touch / coarse pointers there is no hover, so keep the button visible.
+@media (hover: none) {
+  .app-code__copy {
+    opacity: 1;
+  }
+}
+
+// Respect reduced-motion preferences (WCAG 2.3.3).
+@media (prefers-reduced-motion: reduce) {
+  .app-code__copy {
+    transition: none;
+  }
+}

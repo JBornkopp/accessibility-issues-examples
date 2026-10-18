@@ -1,0 +1,139 @@
+// =============================================================================
+// Design tokens — the single source of truth for the theme.
+// -----------------------------------------------------------------------------
+// Owned by the @ui-components library so the tokens travel with the components.
+// The consuming app imports this partial once (see src/styles.scss) which emits:
+//   • :root                → light theme (default)
+//   • [data-theme='dark']  → dark theme (set by ThemeService / the no-flash script)
+//
+// Every colour pairing below is chosen to meet WCAG 2.2:
+//   • 1.4.3  Contrast (Minimum)      — body text ≥ 4.5:1, large text ≥ 3:1
+//   • 1.4.11 Non-text Contrast       — control borders / focus / states ≥ 3:1
+//
+// Custom components consume ONLY these tokens (var(--aih-…)) — never raw hex —
+// so a single theme switch re-colours the whole app, including our components.
+// =============================================================================
+
+
+// ------------------------------- Light theme --------------------------------
+:root {
+  color-scheme: light;
+
+
+  // Surfaces
+  --aih-color-bg: #eef0f4; // page background
+  --aih-color-surface: #ffffff; // cards, header, popovers
+  --aih-color-surface-2: #f4f6fa; // subtle raised / hovered surface
+
+
+  // Text (on surface / bg)
+  --aih-color-text: #1b2130; // ~15:1 on surface — 1.4.3
+  --aih-color-text-muted: #566072; // ~6.3:1 on surface, ~5.5:1 on bg — 1.4.3
+  --aih-color-on-primary: #ffffff; // text on primary fill
+
+
+  // Borders
+  --aih-color-border: #f3f5f8; // decorative dividers (no min contrast)
+  --aih-color-control-border: #767e90; // ~4:1 on surface, ~3.5:1 on bg — 1.4.11
+
+
+  // Brand / interactive
+  --aih-color-primary: #4f46e5; // ~6.3:1 on surface — links, brand, fills
+  --aih-color-primary-hover: #4338ca;
+  --aih-color-link: var(--aih-color-primary);
+
+
+  // Selected state (e.g. theme toggle) — colour + fill, paired with an icon in markup
+  --aih-color-selected-bg: #4f46e5;
+  --aih-color-selected-text: #ffffff; // ~6.3:1 on selected-bg — 1.4.3
+
+
+  // Focus ring — visible on light surfaces, ≥3:1 — 2.4.7 / 2.4.11 / 2.4.13
+  --aih-color-focus-ring: #1d4ed8;
+
+
+  // Hero banner gradient — white body text on any stop is ≥7:1 — 1.4.3
+  --aih-gradient-hero: linear-gradient(100deg, #4338ca 0%, #7e22ce 100%);
+
+
+  // Badges (meaning also carried by text label — 1.4.1)
+  --aih-color-badge-neutral-bg: #1e293b;
+  --aih-color-badge-neutral-text: #ffffff;
+  --aih-color-badge-ai-bg: #4f46e5;
+  --aih-color-badge-ai-text: #ffffff;
+
+
+  // ------------------------------ Non-colour tokens -------------------------
+  // (theme-independent, defined once)
+
+
+  // Spacing scale (rem-based → respects user font size, 1.4.4 / 1.4.10)
+  --aih-space-1: 0.25rem;
+  --aih-space-2: 0.5rem;
+  --aih-space-3: 0.75rem;
+  --aih-space-4: 1rem;
+  --aih-space-5: 1.5rem;
+  --aih-space-6: 2rem;
+
+
+  // Radius
+  --aih-radius-sm: 0.375rem;
+  --aih-radius-md: 0.5rem;
+  --aih-radius-lg: 0.75rem;
+  --aih-radius-pill: 999px;
+
+
+  // Focus outline geometry
+  --aih-focus-width: 3px;
+  --aih-focus-offset: 2px;
+}
+
+
+// ------------------------------ Dark theme --------------------------------
+[data-theme='dark'] {
+  color-scheme: dark;
+
+
+  // Surfaces
+  --aih-color-bg: #0b1020;
+  --aih-color-surface: #141b2e;
+  --aih-color-surface-2: #1b2338;
+
+
+  // Text
+  --aih-color-text: #e7eaf2; // ~14:1 on surface — 1.4.3
+  --aih-color-text-muted: #a2acc2; // ~7.5:1 on surface — 1.4.3
+  --aih-color-on-primary: #ffffff;
+
+
+  // Borders
+  --aih-color-border: #27314c;
+  --aih-color-control-border: #6b7699; // ~3.8:1 on surface — 1.4.11
+
+
+  // Brand / interactive (lightened so links/brand pass on dark)
+  --aih-color-primary: #a5b4fc; // ~8:1 on surface — 1.4.3
+  --aih-color-primary-hover: #c7d2fe;
+  --aih-color-link: var(--aih-color-primary);
+
+
+  // Selected state — lightened vs. light theme so the fill clears 1.4.11 (≥3:1)
+  // against the dark surface while white text still clears 1.4.3 (≥4.5:1).
+  --aih-color-selected-bg: #5b57e8; // ~3.2:1 on surface, white text ~5.3:1
+  --aih-color-selected-text: #ffffff;
+
+
+  // Focus ring
+  --aih-color-focus-ring: #93b4ff;
+
+
+  // Hero gradient (same stops read well on dark; white text ≥7:1)
+  --aih-gradient-hero: linear-gradient(100deg, #4338ca 0%, #7e22ce 100%);
+
+
+  // Badges
+  --aih-color-badge-neutral-bg: #273349;
+  --aih-color-badge-neutral-text: #e7eaf2;
+  --aih-color-badge-ai-bg: #6366f1;
+  --aih-color-badge-ai-text: #ffffff;
+}
