@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  booleanAttribute,
+  computed,
+  input,
+  output,
+  signal
+} from '@angular/core';
 
 /**
  * Displays a block of source code.
@@ -23,29 +31,33 @@ import { ChangeDetectionStrategy, Component, computed, input, output, signal } f
   standalone: true,
   templateUrl: './code.html',
   styleUrl: './code.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'app-code',
   },
 })
 export class Code {
   /** The raw source code to display. */
-  readonly code = input.required<string>();
+  public readonly code = input.required<string>();
 
   /**
    * The language of the snippet. Used for the `aria-label` of the code region
    * and exposed as a `data-language` attribute for optional styling/highlighting.
    */
-  readonly language = input<string>();
+  public readonly language = input<string>();
 
   /** Whether to render the copy-to-clipboard button. */
-  readonly copyable = input<boolean>(true);
+  public readonly copyable = input<boolean, unknown>(
+    true,
+    { transform: booleanAttribute },
+  );
 
   /** Accessible label for the code region. */
-  readonly ariaLabel = input<string>('Code-Beispiel', { alias: 'label' });
+  public readonly ariaLabel = input<string>('Code-Beispiel', {
+    alias: 'label',
+  });
 
   /** Emits `true` on a successful copy, `false` when copying failed. */
-  readonly copied = output<boolean>();
+  public readonly copied = output<boolean>();
 
   /** The normalized code (common indentation removed, trailing blank lines trimmed). */
   protected readonly formattedCode = computed(() => dedent(this.code()));

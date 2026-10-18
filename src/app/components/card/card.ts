@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import {
+  Component,
+  computed,
+  input
+} from '@angular/core';
 
 /**
  * A reusable content card.
@@ -21,26 +25,29 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
   standalone: true,
   templateUrl: './card.html',
   styleUrl: './card.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'app-card',
+    // `title` is also a global HTML attribute. Strip it from the host so it does
+    // not create a tooltip over the whole card / a duplicate SR announcement.
+    '[attr.title]': 'null',
   },
 })
 export class Card {
   /** Optional pill-shaped badge shown above the title. Hidden when empty. */
-  readonly badge = input<string>();
+  public readonly badge = input<string>();
 
   /** The card heading. */
-  readonly title = input.required<string>();
+  public readonly title = input.required<string>();
 
   /** Optional supporting text shown below the title. Hidden when empty. */
-  readonly description = input<string>();
+  public readonly description = input<string>();
 
   /** Heading level used for the title, for a correct document outline. */
-  readonly headingLevel = input<1 | 2 | 3 | 4 | 5 | 6>(2);
+  public readonly headingLevel = input<1 | 2 | 3 | 4 | 5 | 6>(
+    2,
+  );
 
   /** Resolved heading tag name, e.g. `h2`. */
-  protected readonly headingTag = computed<`h${1 | 2 | 3 | 4 | 5 | 6}`>(
-    () => `h${this.headingLevel()}` as const,
-  );
+  protected readonly headingTag =
+    computed<`h${1 | 2 | 3 | 4 | 5 | 6}`>(() => `h${this.headingLevel()}` as const);
 }

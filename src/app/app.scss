@@ -26,6 +26,10 @@ h1 {
   line-height: 1.5;
 }
 
+main {
+  display: block;
+}
+
 app-card {
   display: block;
   margin-bottom: var(--aih-space-6);
@@ -50,6 +54,8 @@ app-card {
 }
 
 .column-header {
+  margin: 0;
+  font-size: 1rem;
   padding: var(--aih-space-2);
   text-align: center;
   font-weight: bold;

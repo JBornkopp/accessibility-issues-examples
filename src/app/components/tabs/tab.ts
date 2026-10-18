@@ -1,4 +1,12 @@
-import { Directive, TemplateRef, inject, input } from '@angular/core';
+import {
+  Directive,
+  InputSignalWithTransform,
+  InputSignal,
+  TemplateRef,
+  booleanAttribute,
+  inject,
+  input,
+} from '@angular/core';
 
 /**
  * Declares a single tab inside an {@link Tabs} component.
@@ -20,14 +28,17 @@ import { Directive, TemplateRef, inject, input } from '@angular/core';
 })
 export class Tab {
   /** The visible label shown in the tab strip. */
-  readonly label = input.required<string>({ alias: 'appTab' });
+  public readonly label: InputSignal<string> = input.required<string>();
 
   /** Whether this tab is disabled (not selectable, but still announced). */
-  readonly disabled = input<boolean>(false);
+  public readonly disabled: InputSignalWithTransform<boolean, unknown> = input<boolean, unknown>(
+    false,
+    { transform: booleanAttribute },
+  );
 
   /** A stable value identifying this tab; defaults to the label. */
-  readonly value = input<string>();
+  public readonly value: InputSignal<string | undefined> = input<string>();
 
   /** The template rendered inside the tab panel. */
-  readonly template = inject<TemplateRef<unknown>>(TemplateRef);
+  public readonly template: TemplateRef<unknown> = inject<TemplateRef<unknown>>(TemplateRef);
 }
